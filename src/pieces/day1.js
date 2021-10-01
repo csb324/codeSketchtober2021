@@ -179,17 +179,39 @@ function drawSea() {
     line(width, y, (width/2 + randomGaussian(reflectionWidth, width*0.02)), y);
 
     pop();
-
-    // }
   }
 
 }
 
 function draw() {
   background(paperColor);
+
+  const scaleAmount = random(0.75, 0.9);
+  const paddingAmount = (1 - scaleAmount) / 2;
+
+  push();
+  translate(width/2, height/2);
+  scale(scaleAmount, scaleAmount);
+  translate(-width/2, -height/2);
   drawSky();
   drawMountainRange();
   drawSea();
+  pop();
+
+  fill(paperColor);
+  noStroke();
+  // rotate(random(0.3) * PI)
+
+  rect(0, 0, paddingAmount*width, height);
+  rect((1 - paddingAmount)*width, 0, paddingAmount*width, height);
+  rect(0, 0, width, paddingAmount * height);
+  rect(0, (1 - paddingAmount)*height, width, paddingAmount*height);
+
+  noFill();
+  stroke(penColor);
+
+  rect(paddingAmount*width, paddingAmount*height, scaleAmount*width, scaleAmount * height);
+
 }
 
 utils.attach({
