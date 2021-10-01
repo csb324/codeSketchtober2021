@@ -1,3 +1,11 @@
+export function standardCanvas() {
+  const parent = document.getElementById('canvas-parent');
+  let smallerDimension = Math.min(parent.parentElement.offsetWidth, parent.parentElement.offsetHeight)
+  smallerDimension -= 32;
+  const c = createCanvas(smallerDimension, smallerDimension);
+  c.parent('canvas-parent');
+}
+
 // these are just defaults I use -- you can kill this if you don't want it
 let isPaused = false;
 let frameStandard = 300;

@@ -2,8 +2,7 @@ import p5 from 'p5';
 import * as utils from '../utils';
 
 function setup() {  
-  let c = createCanvas(400, 400);
-  c.parent('canvas-parent');
+  utils.standardCanvas();
   reset();
 }
 

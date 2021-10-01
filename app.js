@@ -31,10 +31,15 @@ prompts.forEach((p, i) => {
 })
 
 app.get('/:route', (req, res) => {
-  res.render('piece', {
-    name: piecesWithFilenames[req.params.route].name,
-    scriptName: `${req.params.route}.js`
-  });
+  const piece = piecesWithFilenames[req.params.route] ;
+  if (piece) {
+    res.render('piece', {
+      name: piece.name,
+      scriptName: `${piece.file}.js`
+    });
+  } else {
+    res.status(404).send('Not found');
+  }
 });
 
 app.get('/', (_req, res) => {
