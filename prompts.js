@@ -1,5 +1,5 @@
 const prompts = [
-  "Day and night",
+  "Day and Night",
   "Futurism",
   "Archeology",
   "Life & Growth",
