@@ -6,6 +6,17 @@ export function standardCanvas() {
   c.parent('canvas-parent');
 }
 
+
+
+export function shuffleArray(array) { 
+	// we're gonna shuffle the colors so cyan isn't always 
+	// in the back
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
 // these are just defaults I use -- you can kill this if you don't want it
 let isPaused = false;
 let frameStandard = 300;
@@ -41,6 +52,16 @@ export function standardMouseReleasedFactory(resetFunction){
   }
 }
 
+export function getMatrix(matrixVariation) {
+  return [ // a very slightly messed up identity matrix 
+		1 + random(-matrixVariation, matrixVariation), 
+				random(-matrixVariation, matrixVariation), 
+				random(-matrixVariation, matrixVariation),
+		1 + random(-matrixVariation, matrixVariation), 
+				random(-matrixVariation, matrixVariation),
+				random(-matrixVariation, matrixVariation)
+	];
+}
 
 export function attach(options = {}) {
   window.setup = options.setup;
@@ -49,3 +70,4 @@ export function attach(options = {}) {
   window.mouseClicked = options.mouseClicked;
   window.mouseReleased = options.mouseReleased;
 } // these are the p5 events I use most so, here they are
+
