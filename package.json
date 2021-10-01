@@ -9,13 +9,18 @@
   "scripts": {
     "server": "nodemon app.js",
     "build": "webpack --watch --mode=development",
-    "start": "concurrently \"npm run server\" \"npm run build\""
+    "start": "concurrently \"npm run server\" \"npm run build\"",
+    "build:prod": "npm run webpack:prod && node build.js",
+    "webpack:prod": "webpack --config=webpack.prod.js --mode=development"
   },
   "author": "csb324",
   "license": "ISC",
   "dependencies": {
+    "copyfiles": "^2.4.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
+    "handlebars": "^4.7.7",
+    "handlebars-layouts": "^3.1.4",
     "p5": "^1.4.0",
     "webpack": "^5.52.0"
   },

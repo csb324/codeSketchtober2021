@@ -1,7 +1,5 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
-const fs = require('fs')
-
 const prompts = require('./prompts.js');
 
 const app = express();
@@ -14,7 +12,7 @@ app.engine(
     layoutsDir: __dirname + '/views/layouts',
     extname: 'hbs',
     defaultLayout: 'index',
-    partialsDir: __dirname + '/views/partials/',
+    partialsDir: __dirname + '/views/partials/'
   }),
 );
 
