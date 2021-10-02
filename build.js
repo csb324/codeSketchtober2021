@@ -4,16 +4,17 @@ var handlebars = require("handlebars");
 var layouts = require('handlebars-layouts');
 var copyfiles = require('copyfiles');
 
-const prompts = require('./prompts.js');
+const piecesWithFilenames = require('./prompts.js');
 
-const piecesWithFilenames = {};
-prompts.forEach((p, i) => {
-  const key = `day${i+1}`;
-  piecesWithFilenames[key] = {
-    name: p,
-    file: key
-  };
-});
+// const piecesWithFilenames = {};
+// prompts.forEach((p, i) => {
+//   const key = `day${i+1}`;
+//   piecesWithFilenames[key] = {
+//     name: p,
+//     file: key
+//   };
+// });
+
 
 function build() {
   handlebars.registerHelper(layouts(handlebars));
@@ -25,7 +26,7 @@ function build() {
 
   copyfiles(["./public/**/*", "./build/"], {up: 1}, () => {
     buildIndex();
-    buildPieces(prompts);  
+    buildPieces(piecesWithFilenames);  
   });
 }
 
@@ -68,16 +69,15 @@ function buildPieces(pieces) {
   var renderTemplate = handlebars.compile(template);
   // console.log(fileData);
   // Write to build folder. Copy the built file and deploy
-  pieces.forEach((p, i) => {
-    const key = `day${i+1}`;
+  Object.values(pieces).forEach((p, i) => {
     var html = renderTemplate({
-      name: p,
-      scriptName: key + ".js"
+      name: p.name,
+      scriptName: p.file + ".js"
     });
 
-    fs.writeFile("./build/" + key + ".html", html, err => {
+    fs.writeFile("./build/" + p.file + ".html", html, err => {
       if (err) console.log(err);
-      console.log("File " + key + " written succesfully");
+      console.log("File " + p.file + " written succesfully");
     });
   })
 }

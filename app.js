@@ -1,6 +1,6 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
-const prompts = require('./prompts.js');
+const piecesWithFilenames = require('./prompts.js');
 
 const app = express();
 const port = process.env.PORT || 5500;
@@ -19,14 +19,14 @@ app.engine(
 app.use(express.static('dist'));
 app.use(express.static('public'));
 
-const piecesWithFilenames = {};
-prompts.forEach((p, i) => {
-  const key = `day${i+1}`;
-  piecesWithFilenames[key] = {
-    name: p,
-    file: key
-  };
-})
+// const piecesWithFilenames = {};
+// prompts.forEach((p, i) => {
+//   const key = `day${i+1}`;
+//   piecesWithFilenames[key] = {
+//     name: p,
+//     file: key
+//   };
+// })
 
 app.get('/:route', (req, res) => {
   const piece = piecesWithFilenames[req.params.route] ;

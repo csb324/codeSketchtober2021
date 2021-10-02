@@ -184,14 +184,52 @@ function drawBuilding(distanceAway) {
 
   for (let index = 5; index >= 0; index--) {
     const yPos = baseHeight - index*h/2;
+    const xRadius = w * (index/13 + 1);
+    const yRadius = h * (index/13 + 1);
+
+    const nextXRadius = w * ((index-1)/13 + 1);
+
     drawWithShadow(() => {
-      ellipse(poleWidth/2, yPos, w * (index/13 + 1), h* (index/13 + 1));
+      ellipse(0, yPos, xRadius, yRadius);
     }, 0, offsetX, sc, hc);
+
+    fill(hc);
+    if(distanceAway < 0.2) {
+      fill(random(colors));
+    }
+    if(random() > 0.6 && index > 0) {
+      rect(nextXRadius/2, yPos, utils.relSize(2 - distanceAway), h/2);
+      rect(-nextXRadius/2, yPos, utils.relSize(2 - distanceAway), h/2);
+    }
   }
 
-  drawWithShadow(() => {
-    rect(0, baseHeight, poleWidth, height);
-  }, offsetX, 0, hc, sc);
+  if(random() > 0.2) {
+    drawWithShadow(() => {
+      rect(-poleWidth, baseHeight, poleWidth, height);
+    }, offsetX, 0, hc, sc);
+  } else {
+    drawWithShadow(() => {
+      beginShape();
+      const columnWidth = poleWidth * 2;
+      vertex(-columnWidth, baseHeight + 2);
+      vertex(columnWidth, baseHeight + 2);
+
+      vertex(columnWidth, height);
+      vertex(poleWidth, height)
+      const archPoint = utils.relSize(random(20, 40)) + baseHeight;
+      vertex(poleWidth, archPoint);
+      curveVertex(poleWidth, archPoint);
+
+      curveVertex(0, baseHeight + (utils.relSize(10, 20)));
+      curveVertex(-poleWidth, archPoint);
+
+      vertex(-poleWidth, archPoint);
+
+      vertex(-poleWidth, height)
+      vertex(-columnWidth, height);
+      endShape(CLOSE);
+    }, offsetX, 0, hc, sc);
+  }
   
   pop();
 }
