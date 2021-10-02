@@ -5,6 +5,7 @@ export function standardCanvas(options = {}) {
 
   const c = createCanvas(smallerDimension, smallerDimension, options.renderer || P2D);
   c.parent('canvas-parent');
+  return c;
 }
 
 
@@ -41,15 +42,18 @@ let lapse = 0;
 // this prevents accidental double-clicks on touch devices
 // it's handy, if you want it. but you can also change what it does
 export function standardMouseReleasedFactory(resetFunction){
-  return function() {
-    if (millis() - lapse > 200){
-      clear();
-      noiseSeed(random(1000));
-      resetFunction();
-      redraw();
+  return function(event) {
+    if(event.target.className == "p5Canvas") {
+      if (millis() - lapse > 200){
+        clear();
+        noiseSeed(random(1000));
+        resetFunction();
+        redraw();
+      }
+      lapse = millis();
+      return false;  
+  
     }
-    lapse = millis();
-    return false;  
   }
 }
 

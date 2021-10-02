@@ -3,9 +3,9 @@ import * as utils from '../utils';
 
 const penColor = '#111111';
 const paperColor = '#efefef';
-
+let canvas;
 function setup() {  
-  utils.standardCanvas();
+  canvas = utils.standardCanvas();
   reset();
   noLoop();
   strokeJoin(ROUND);
@@ -217,6 +217,7 @@ function draw() {
 utils.attach({
   setup,
   draw,
+  canvas,
   mouseReleased: utils.standardMouseReleasedFactory(reset),
-  keyPressed: utils.standardKeyPressed
+  keyPressed: utils.standardKeyPressed,
 });

@@ -1,6 +1,6 @@
 import p5 from 'p5';
 import * as utils from '../utils';
-
+let canvas;
 const colors = [
   "#7692fa",
   "#5355d3",
@@ -17,7 +17,7 @@ const colors = [
 
 
 function setup() {  
-  utils.standardCanvas();
+  canvas = utils.standardCanvas();
   reset();
   noStroke();
   noLoop();
@@ -274,6 +274,7 @@ function draw() {
 utils.attach({
   setup,
   draw,
+  canvas,
   mouseReleased: utils.standardMouseReleasedFactory(reset),
   keyPressed: utils.standardKeyPressed
 });
