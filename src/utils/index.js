@@ -1,8 +1,9 @@
-export function standardCanvas() {
+export function standardCanvas(options = {}) {
   const parent = document.getElementById('canvas-parent');
   let smallerDimension = Math.min(parent.parentElement.offsetWidth, parent.parentElement.offsetHeight)
   smallerDimension -= 32;
-  const c = createCanvas(smallerDimension, smallerDimension);
+
+  const c = createCanvas(smallerDimension, smallerDimension, options.renderer || P2D);
   c.parent('canvas-parent');
 }
 
@@ -61,6 +62,10 @@ export function getMatrix(matrixVariation) {
 				random(-matrixVariation, matrixVariation),
 				random(-matrixVariation, matrixVariation)
 	];
+}
+
+export function relSize(pixelsIsh) {
+  return (pixelsIsh/1000) * width;
 }
 
 export function attach(options = {}) {
