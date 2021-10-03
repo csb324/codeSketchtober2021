@@ -1,7 +1,7 @@
 const prompts = { 
   "day1": { "name": "Day and Night", "file": "day1", thumbnail: true}, 
   "day2": { "name": "Futurism", "file": "day2", thumbnail: true}, 
-  "day3": { "name": "Archeology", "file": "day3" }, 
+  "day3": { "name": "Archeology", "file": "day3", thumbnail: true}, 
   "day4": { "name": "Life & Growth", "file": "day4" }, 
   "day5": { "name": "Death & Decay", "file": "day5" }, 
   "day6": { "name": "Loud", "file": "day6" }, 

@@ -171,8 +171,8 @@ function drawShape(pointsArray) {
 }
 
 
-function rectanglePack(subsegments, force = false) {
-  const minDimension = utils.relSize(100);
+function rectanglePack(subsegments, i) {
+  const minDimension = utils.relSize(30);
   let newSubsegments = [];
   for (let index = 0; index < subsegments.length; index++) {
     const element = subsegments[index];
@@ -180,7 +180,9 @@ function rectanglePack(subsegments, force = false) {
     const wideEnoughToSplit = (element.w > 2*minDimension);
     const tallEnoughToSplit = (element.h > 2*minDimension);
 
-    if(force || wideEnoughToSplit || tallEnoughToSplit) {
+    if (random() < (i/10) || !(wideEnoughToSplit || tallEnoughToSplit)) {
+      newSubsegments.push(element);
+    } else if (wideEnoughToSplit || tallEnoughToSplit) {      
       if(element.w > element.h) {
         const divisionPoint = random(minDimension, element.w - minDimension);
         const newPoint = {
@@ -205,15 +207,9 @@ function rectanglePack(subsegments, force = false) {
         element.h = divisionPoint;
         newSubsegments.push(element);
 
-      }
-    } else {
-      console.log("was it wide enough?");
-      console.log(wideEnoughToSplit);
-      console.log("was it tall enough?");
-      console.log(tallEnoughToSplit);
-      
-      newSubsegments.push(element);
+      }  
     }
+
 
   }
   return newSubsegments;
@@ -224,11 +220,20 @@ function draw() {
   let subsegments = [{
     x: 0, y: 0, w: width, h: height
   }];
-  subsegments = rectanglePack(subsegments, true);
-  subsegments = rectanglePack(subsegments);
-  subsegments = rectanglePack(subsegments);
+  let oldSubsegments = [];
+  let i = 0;
+  while(oldSubsegments.length !== subsegments.length) {
+    oldSubsegments = subsegments;
+    subsegments = rectanglePack(subsegments, i);
+    i++;
+  }
+  // subsegments = rectanglePack(subsegments, true);
+  // subsegments = rectanglePack(subsegments);
+  // subsegments = rectanglePack(subsegments);
+  // subsegments = rectanglePack(subsegments);
+  // subsegments = rectanglePack(subsegments);
 
-  const padding = utils.relSize(50);
+  const padding = utils.relSize(10);
 
   translate(padding/2, padding/2);
 
