@@ -29,7 +29,6 @@ function reset() {
   fill(fillColor);
   blendMode(ADD);
 
-  strokeWeight(utils.relSize(1));
   strokeColor = color(paperColor);
   generateGradients();
 }
@@ -69,16 +68,16 @@ function deform(array) {
   for (let i = 1; i < array.length; i++) {
     const element = array[i];
     const last = array[i-1];
-
     na.push(last);
 
     const v1 = createVector(element.x, element.y);
     const v2 = createVector(last.x, last.y);
+
     const movement = v1.copy().sub(v2);
 
     movement.mult(0.5);
-    // movement.rotate(random(-0.1, 0.1) * PI);
     movement.add(p5.Vector.random2D().setMag(movement.mag() * 0.2));
+
     v1.sub(movement);
     const newPoint = {x: v1.x, y: v1.y, new: true};
     na.push(newPoint);
@@ -123,7 +122,6 @@ function baseRockPoints(w, h) {
 function drawRock(x, y, w, h) {
   let points = baseRockPoints(w, h);
   let pointsD = points;
-  let pointsR = points;
 
   const howManyDeforms = floor(random(2, 4));
   const howManyRidges = floor(random(1, 5));
@@ -137,14 +135,13 @@ function drawRock(x, y, w, h) {
   for (let i = 0; i < howManyDeforms; i++) {
     pointsD = deformAndDraw(pointsD);
     if(i == 0 || random() > 0.5) {
-      pointsR = reduce(pointsD);
-      deformAndDraw(pointsR);
-
+      deformAndDraw(reduce(pointsD));
       if(random() > 0.5) {
         deformAndDraw(reduce(pointsD));
       }
     }
   }
+  
   for (let i = 0; i < howManyRidges; i++) {
     drawRidge(pointsD);
   }
