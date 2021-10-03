@@ -8,15 +8,25 @@ export function standardCanvas(options = {}) {
   return c;
 }
 
-
+export function createGradient(color1, color2, xDirection, yDirection) {
+  const g = drawingContext.createLinearGradient(0, 0, xDirection ? width*xDirection : 0, yDirection ? height*yDirection : 0);
+  g.addColorStop(0, color1);
+  g.addColorStop(1, color2);
+  return g;
+}
 
 export function shuffleArray(array) { 
-	// we're gonna shuffle the colors so cyan isn't always 
-	// in the back
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+export function debugShape(pointsArray) {
+  for (let index = 0; index < pointsArray.length; index++) {
+    const p = pointsArray[index];
+    ellipse(p.x, p.y, 10, 10);
+  }
 }
 
 // these are just defaults I use -- you can kill this if you don't want it
