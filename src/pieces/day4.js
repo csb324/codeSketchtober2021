@@ -1,6 +1,8 @@
 import p5 from 'p5';
 import * as utils from '../utils';
 
+// we are straight up starting over.
+
 function setup() {  
   utils.standardCanvas();
   reset();
@@ -8,8 +10,7 @@ function setup() {
 }
 
 function reset() {
-  fill(random(55) + 100);
-
+  clear();
 }
 
 function draw() {

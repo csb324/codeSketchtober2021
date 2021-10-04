@@ -33,7 +33,7 @@ export function debugShape(pointsArray) {
 let isPaused = false;
 let frameStandard = 300;
 export function standardKeyPressed() {
-  if(frameStandard > 30) {
+  if(frameStandard > 100) {
     frameStandard = floor(frameRate());
   }
   if (key === "s") {		
@@ -55,7 +55,6 @@ export function standardMouseReleasedFactory(resetFunction){
   return function(event) {
     if(event.target.className == "p5Canvas") {
       if (millis() - lapse > 200){
-        clear();
         noiseSeed(random(1000));
         resetFunction();
         redraw();
@@ -85,6 +84,7 @@ export function relSize(pixelsIsh) {
 export function attach(options = {}) {
   window.setup = options.setup;
   window.draw = options.draw;
+  window.preload = options.preload;
   window.keyPressed = options.keyPressed;
   window.mouseClicked = options.mouseClicked;
   window.mouseReleased = options.mouseReleased;
