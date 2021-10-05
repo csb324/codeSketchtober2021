@@ -15,6 +15,7 @@ function setup() {
 let horizonLine, mountainTop, rangeHeight, sunHeight, sunSize;
 
 function reset() {
+  clear();
   horizonLine = random(height* 0.65, height * 0.9);
   rangeHeight = random(height * 0.1, height * 0.4);
   mountainTop = horizonLine - rangeHeight;

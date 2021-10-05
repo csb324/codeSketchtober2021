@@ -28,6 +28,7 @@ let cloudColor;
 let midSkyColor;
 
 function reset() {
+  clear();
   // lightColor = color(random(colors));
   const color1index = floor(random(colors.length - 1));
   const color2index = color1index + 1;
