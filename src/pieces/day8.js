@@ -9,7 +9,6 @@ function setup() {
 
 function reset() {
   fill(random(55) + 100);
-
 }
 
 function draw() {
