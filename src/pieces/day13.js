@@ -130,7 +130,7 @@ class MapForWalking {
       }
 
       // stroke(penColor);
-      strokeWeight(utils.relSize(3));
+      strokeWeight(map(this.gridSize, 0, 15, utils.relSize(4), utils.relSize(0.5)));
 
       // next.add(createVector(x+blockSize, y+blockSize));
       switch (this.pointer.direction) {
@@ -252,7 +252,7 @@ function draw() {
   scale(0.8, 0.8);
   translate(-width/2, -height/2);
 
-  const m = new MapForWalking(floor(random(3, 15)));
+  const m = new MapForWalking(floor(random(3, 12)));
   m.draw();
 
 }
