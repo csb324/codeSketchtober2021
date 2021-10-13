@@ -11,7 +11,7 @@ const prompts = {
   "day10": { "name": "Games are art and you cannot let anyone tell you otherwise", "file": "day10" }, 
   "day11": { "name": "Elemental", "file": "day11", thumbnail: false }, 
   "day12": { "name": "Be small, do crimes", "file": "day12", thumbnail: true }, 
-  "day13": { "name": "A chain of blocks but NOT blockchain okay? Idk man figure it out", "file": "day13" }, 
+  "day13": { "name": "A chain of blocks but NOT blockchain okay? Idk man figure it out", "file": "day13", thumbnail: true }, 
   "day14": { "name": "Under construction", "file": "day14" }, 
   "day15": { "name": "Delicious", "file": "day15" }, 
   "day16": { "name": "Spirit week (like, with regard to ghosts. Also it’s still just one day)", "file": "day16" }, 
