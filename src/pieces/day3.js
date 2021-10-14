@@ -1,5 +1,6 @@
 import p5 from 'p5';
 import * as utils from '../utils';
+import Rock from '../utils/Rock';
 
 const penColor = '#111111';
 const paperColor = '#efefef';
@@ -17,6 +18,13 @@ const rockColors = [
   'rgba(190, 171, 155,  0.2)'
 ]
 
+
+class ArchaeologyRock extends Rock {
+  setColor() {
+    drawingContext.fillStyle = random(gradients);  
+  }
+}
+
 function setup() {  
   utils.standardCanvas();
   fillColor = color(paperColor);
@@ -26,6 +34,7 @@ function setup() {
 }
 
 function reset() {
+  clear();
   fill(fillColor);
   blendMode(ADD);
 
@@ -58,116 +67,6 @@ function generateGradients() {
       )
     )
   }
-}
-
-
-function deform(array) {
-  let na = [];
-  array.push(array[0]);
-
-  for (let i = 1; i < array.length; i++) {
-    const element = array[i];
-    const last = array[i-1];
-    na.push(last);
-
-    const v1 = createVector(element.x, element.y);
-    const v2 = createVector(last.x, last.y);
-
-    const movement = v1.copy().sub(v2);
-
-    movement.mult(0.5);
-    movement.add(p5.Vector.random2D().setMag(movement.mag() * 0.2));
-
-    v1.sub(movement);
-    const newPoint = {x: v1.x, y: v1.y, new: true};
-    na.push(newPoint);
-  }
-
-  // return array;
-  // na.push(array[array.length-1]);
-  return na;
-}
-
-function reduce(array) {
-  const r = random(100);
-  const nArray = array.filter((_e, i) => noise(i/array.length, r) > 0.5);
-  if (nArray.length > 2) {
-    return nArray;
-  } else {
-    // sometimes something weird happens with like, the number 29? 
-    // anyway, this fixed it.
-    // life's too short to find out what's wrong with the number 29
-    noiseSeed(random(1000));
-    return reduce(array);
-  }
-}
-
-function deformAndDraw(a) {
-  if(a.length == 0) {
-    return [];
-  }
-  a = deform(a);
-  drawShape(a);
-  return a;
-}
-
-function baseRockPoints(w, h) {
-  let points = [];
-  for (let r = 0; r < TWO_PI; r+= random(PI * 0.5)) {
-    points.push({x: cos(r) * w/2, y:sin(r) * h/2})   
-  }
-  return points;
-}
-
-function drawRock(x, y, w, h) {
-  let points = baseRockPoints(w, h);
-  let pointsD = points;
-
-  const howManyDeforms = floor(random(2, 4));
-  const howManyRidges = floor(random(1, 5));
-
-  push();
-  translate(x + (w/2), y + (h/2));
-  noStroke();
-  drawingContext.fillStyle = random(gradients);  
-
-  drawShape(points);
-  for (let i = 0; i < howManyDeforms; i++) {
-    pointsD = deformAndDraw(pointsD);
-    if(i == 0 || random() > 0.5) {
-      deformAndDraw(reduce(pointsD));
-      if(random() > 0.5) {
-        deformAndDraw(reduce(pointsD));
-      }
-    }
-  }
-  
-  for (let i = 0; i < howManyRidges; i++) {
-    drawRidge(pointsD);
-  }
-  pop();
-}
-
-function drawRidge(pointsArray) {
-  strokeColor.setAlpha(random(10, 40));
-  strokeWeight(utils.relSize(random(1, 3)));
-  stroke(strokeColor);
-  const p1 = random(pointsArray);
-  const p2 = random(pointsArray);  
-  line(p1.x, p1.y, p2.x, p2.y);
-}
-
-function drawShape(pointsArray) {
-  if(random() > 0.7) {
-    drawingContext.fillStyle = random(gradients);  
-  }
-
-  beginShape()
-  for (let index = 0; index < pointsArray.length; index++) {
-    const p = pointsArray[index];
-    vertex(p.x, p.y);
-  }
-  endShape(CLOSE);
 }
 
 
@@ -240,7 +139,8 @@ function draw() {
   noStroke();
 
   subsegments.forEach((s) => {
-    drawRock(s.x, s.y, s.w - padding, s.h - padding);
+    const r = new ArchaeologyRock(s.x, s.y, s.w - padding, s.h - padding);
+    r.draw();
   })
   
 }

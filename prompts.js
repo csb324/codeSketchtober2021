@@ -6,7 +6,7 @@ const prompts = {
   "day5": { "name": "Death & Decay", "file": "day5", thumbnail: true }, 
   "day6": { "name": "Loud", "file": "day6", thumbnail: true }, 
   "day7": { "name": "The pixel.", "file": "day7" }, 
-  "day8": { "name": "Capital R Romantic", "file": "day8" }, 
+  "day8": { "name": "Capital R Romantic", "file": "day8", thumbnail: true }, 
   "day9": { "name": "Heartbeat", "file": "day9" }, 
   "day10": { "name": "Games are art and you cannot let anyone tell you otherwise", "file": "day10" }, 
   "day11": { "name": "Elemental", "file": "day11", thumbnail: false }, 
