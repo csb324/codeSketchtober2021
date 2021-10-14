@@ -248,10 +248,7 @@ function draw() {
   stroke(penColor);
   strokeWeight(utils.relSize(3));
 
-  translate(width/2, height/2);
-  scale(0.8, 0.8);
-  translate(-width/2, -height/2);
-
+  utils.zoomOut(0.8);
   const m = new MapForWalking(floor(random(3, 12)));
   m.draw();
 

@@ -1,23 +1,56 @@
 import p5 from 'p5';
 import * as utils from '../utils';
 
+import Building from '../utils/Building';
+
+let buildings = [];
+
 function setup() {  
   utils.standardCanvas();
   reset();
-  noLoop();
+  frameRate(12);
 }
 
 function reset() {
-  fill(random(55) + 100);
+  background(utils.paperColor);
 
+  createBuildings();
 }
 
+let d;
+function createBuildings() {
+  buildings = [];
+
+  let x = 0;
+  while(x < width) {
+    const b = new Building(x);
+    buildings.push(b);
+    x += b.width;
+    x += utils.relSize(40);
+  }
+
+  x -= utils.relSize(40);
+
+  d = x - width;
+}
 function draw() {
-  rect(0, 0, width, height);
-  fill(0);
-  textAlign(CENTER, CENTER);
-  textSize(20);
-  text("coming soon", width/2, height/2);
+  utils.zoomOut(0.7);
+  translate(-d/2, 0);
+
+  background(utils.paperColor);
+  strokeWeight(utils.relSize(1));
+  fill(utils.paperColor);
+  stroke(utils.penColor);
+  // strokeWeight(utils.relSize(3));
+
+  buildings.forEach((b) => {
+    b.addProgress();
+    b.drawBuilding();
+  });
+  buildings.forEach((b) => {
+    b.drawScaffolding();
+  });
+
 }
 
 

@@ -8,6 +8,10 @@ export function standardCanvas(options = {}) {
   return c;
 }
 
+export const penColor = '#111111';
+export const paperColor = '#efefef';
+
+
 export function createGradient(color1, color2, xDirection, yDirection) {
   const g = drawingContext.createLinearGradient(0, 0, xDirection ? width*xDirection : 0, yDirection ? height*yDirection : 0);
   g.addColorStop(0, color1);
@@ -75,6 +79,12 @@ export function getMatrix(matrixVariation) {
 				random(-matrixVariation, matrixVariation),
 				random(-matrixVariation, matrixVariation)
 	];
+}
+
+export function zoomOut(amount) {
+  translate(width/2, height/2);
+  scale(amount, amount);
+  translate(-width/2, -height/2);
 }
 
 export function relSize(pixelsIsh) {
