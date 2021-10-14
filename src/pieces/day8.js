@@ -28,6 +28,9 @@ function setup() {
     rgba(216, 196, 184, 0.2),
     rgba(185, 192, 208, 0.2),
     rgba(168, 138, 138, 0.2),
+
+    rgba(131, 83, 64, 0.2),
+    rgba(62, 44, 38, 0.2),
     rgba(131, 83, 64, 0.2),
     rgba(62, 44, 38, 0.2),
     rgba(234, 215, 189, 0.2),
@@ -66,26 +69,40 @@ function reset() {
 
 
 function smoothColor(colorList, value) {
-  const strokeColorIndex = map(value, 0, 1, 0, colorList.length);
+  
+  const strokeColorIndex = map(constrain(value, 0, 1), 0, 1, 0, colorList.length-0.01);
+
   const startColor = colorList[floor(strokeColorIndex)];
   let endColor = colorList[ceil(strokeColorIndex)];
+
   if(strokeColorIndex > colorList.length - 1) {
     endColor = colorList[0];
   }
-  return lerpColor(startColor, endColor, fract(strokeColorIndex));
+  let c;
+  try {
+    c = lerpColor(startColor, endColor, fract(strokeColorIndex));
+    
+  } catch (error) {
+    console.log("Wtf");
+    console.log(strokeColorIndex);
+    console.log(colorList.length);
+  }
+  return c;
+
 }
 
 function drawSky() {
   noFill();
-  noiseDetail(4, 0.6);
+  noiseDetail(5, 0.5);
   const factor = 0.02;
-  for (let y = 0; y < height*horizon + 40; y+= random(4, 12)) {
-    for (let x = 0; x < width + 40; x+= random(4, 12)) {
+  for (let y = 0; y < height*horizon + 40; y+= utils.relSize(random(4, 12))) {
+    for (let x = 0; x < width + 40; x+= utils.relSize(random(4, 12))) {
 
       const nValue = noise(x*factor * 0.3, y*factor * 0.3);
       const strokeColor = smoothColor(colors, nValue);
       stroke(strokeColor);
-      strokeWeight(utils.relSize(20 * (colors.length * nValue)));
+      // strokeWeight(5);
+      strokeWeight(utils.relSize(4* (colors.length * (nValue + 1))));
 
       beginShape();
       vertex(x, y);
@@ -155,7 +172,7 @@ function draw() {
   drawSky();
 
   const i = get();
-  const zFactor = 2.4;
+  const zFactor = 2;
   const rFactor = 0.02;
 
   push();
