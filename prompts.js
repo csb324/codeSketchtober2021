@@ -13,7 +13,7 @@ const prompts = {
   "day12": { "name": "Be small, do crimes", "file": "day12", thumbnail: true }, 
   "day13": { "name": "A chain of blocks but NOT blockchain okay? Idk man figure it out", "file": "day13", thumbnail: true }, 
   "day14": { "name": "Under construction", "file": "day14", thumbnail: true }, 
-  "day15": { "name": "Delicious", "file": "day15" }, 
+  "day15": { "name": "Delicious", "file": "day15", thumbnail: true }, 
   "day16": { "name": "Spirit week (like, with regard to ghosts. Also it’s still just one day)", "file": "day16" }, 
   "day17": { "name": "Decades day", "file": "day17" }, 
   "day18": { "name": "A dog with a stick", "file": "day18" }, 
