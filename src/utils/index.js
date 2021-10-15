@@ -19,6 +19,15 @@ export function createGradient(color1, color2, xDirection, yDirection) {
   return g;
 }
 
+export function createRadialGradient(colors, circleSize, offsetX = 0, offsetY = 0) {
+  const g = drawingContext.createRadialGradient(0, 0, 0, offsetX, offsetY, circleSize);
+  for (let index = 0; index < colors.length; index++) {
+    const element = colors[index];
+    g.addColorStop((index/colors.length), element);    
+  }
+  return g;
+}
+
 export function shuffleArray(array) { 
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
