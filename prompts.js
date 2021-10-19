@@ -17,7 +17,7 @@ const prompts = {
   "day16": { "name": "Spirit week (like, with regard to ghosts. Also it’s still just one day)", "file": "day16" }, 
   "day17": { "name": "Decades day", "file": "day17" }, 
   "day18": { "name": "A dog with a stick", "file": "day18" }, 
-  "day19": { "name": "Tiny", "file": "day19" }, 
+  "day19": { "name": "Tiny", "file": "day19", thumbnail: true }, 
   "day20": { "name": "Invasive species", "file": "day20" }, 
   "day21": { "name": "Pick a piece of non-digital art and reference it, but I swear if it’s Mondrian you’re gonna get a bonk.", "file": "day21" }, 
   "day22": { "name": "Justice", "file": "day22" }, 

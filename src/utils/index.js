@@ -11,6 +11,9 @@ export function standardCanvas(options = {}) {
 export const penColor = '#111111';
 export const paperColor = '#efefef';
 
+export function rgba(r, g, b, aPercent) {
+  return color(r, g, b, aPercent * 255);
+}
 
 export function createGradient(color1, color2, xDirection, yDirection) {
   const g = drawingContext.createLinearGradient(0, 0, xDirection ? width*xDirection : 0, yDirection ? height*yDirection : 0);
