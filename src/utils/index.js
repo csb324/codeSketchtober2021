@@ -112,3 +112,19 @@ export function attach(options = {}) {
   window.mouseReleased = options.mouseReleased;
 } // these are the p5 events I use most so, here they are
 
+export default {
+  attach,
+  relSize,
+  zoomOut, 
+  getMatrix,
+  standardMouseReleasedFactory,
+  standardKeyPressed,
+  standardCanvas,
+  debugShape,
+  shuffleArray,
+  createRadialGradient,
+  createGradient,
+  penColor,
+  paperColor,
+  rgba
+};
