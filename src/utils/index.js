@@ -46,8 +46,6 @@ export function debugShape(pointsArray) {
 }
 
 // these are just defaults I use -- you can kill this if you don't want it
-let isPaused = false;
-let frameStandard = 300;
 export function standardKeyPressed() {
   if(frameStandard > 100) {
     frameStandard = floor(frameRate());
@@ -61,6 +59,28 @@ export function standardKeyPressed() {
     console.log(isPaused);
     console.log(frameStandard);
   } 
+}
+
+export function standardKeyPressedFactory(name) {
+  let isPaused = false;
+  let frameStandard = 300;
+  function standardKeyPressed() {
+    if(frameStandard > 100) {
+      frameStandard = floor(frameRate());
+    }
+    if (key === "s") {		
+      save(name)
+    }
+    if (key === "p") {
+      frameRate(isPaused ? frameStandard : 0);
+      isPaused = !isPaused;
+      console.log(isPaused);
+      console.log(frameStandard);
+    } 
+  }
+
+  return standardKeyPressed;
+  
 }
 
 

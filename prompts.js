@@ -29,7 +29,9 @@ const prompts = {
   "day28": { "name": "Language arts", "file": "day28" }, 
   "day29": { "name": "Just vibes", "file": "day29" }, 
   "day30": { "name": "ActuallyGoodFinal_final-v2.png", "file": "day30" }, 
-  "day31": { "name": "WILD CARD HALLOWEEN", "file": "day31" } 
+  "day31": { "name": "WILD CARD HALLOWEEN", "file": "day31" },
+  "g4": { "name": "Genuary day 4: The Next Next Fidenza", "file":"g4"},
+  "g5": { "name": "Genuary day 5: Destroy a Square", "file":"g5"}
 };
 
 module.exports = prompts;
