@@ -2,13 +2,13 @@
 
 <ul class="gallery">
 {{#each pieces}}
-  <li class="gallery__item">
-    <a class="gallery__link" href="/{{file}}">
-      {{#if thumbnail}}
-        <img class="gallery__thumb" src="/thumbnails/{{file}}.png" />
-      {{/if}}
-      {{name}}
-    </a>
-  </li>
+  {{#if thumbnail}}
+    <li class="gallery__item">
+      <a class="gallery__link" href="/{{file}}">
+          <img class="gallery__thumb" src="/thumbnails/{{file}}.png" />
+        {{name}}
+      </a>
+    </li>
+  {{/if}}
 {{/each}}
 </ul>

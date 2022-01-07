@@ -32,7 +32,8 @@ const prompts = {
   "day31": { "name": "WILD CARD HALLOWEEN", "file": "day31" },
   "g4": { "name": "Genuary day 4: The Next Next Fidenza", "file":"g4", thumbnail: true},
   "g5": { "name": "Genuary day 5: Destroy a Square", "file":"g5", thumbnail: true},
-  "g2": { "name": "Genuary day 2: Dithering", "file":"g2", thumbnail: true}
+  "g2": { "name": "Genuary day 2: Dithering", "file":"g2", thumbnail: true},
+  "g7": { "name": "Genuary day 7: Sol LeWitt Wall Drawing", "file":"g7", thumbnail: true}
 };
 
 module.exports = prompts;
