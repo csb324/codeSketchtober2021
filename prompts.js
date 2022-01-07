@@ -30,8 +30,9 @@ const prompts = {
   "day29": { "name": "Just vibes", "file": "day29" }, 
   "day30": { "name": "ActuallyGoodFinal_final-v2.png", "file": "day30" }, 
   "day31": { "name": "WILD CARD HALLOWEEN", "file": "day31" },
-  "g4": { "name": "Genuary day 4: The Next Next Fidenza", "file":"g4"},
-  "g5": { "name": "Genuary day 5: Destroy a Square", "file":"g5"}
+  "g4": { "name": "Genuary day 4: The Next Next Fidenza", "file":"g4", thumbnail: true},
+  "g5": { "name": "Genuary day 5: Destroy a Square", "file":"g5", thumbnail: true},
+  "g2": { "name": "Genuary day 2: Dithering", "file":"g2", thumbnail: true}
 };
 
 module.exports = prompts;

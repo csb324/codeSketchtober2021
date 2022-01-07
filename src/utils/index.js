@@ -8,6 +8,21 @@ export function standardCanvas(options = {}) {
   return c;
 }
 
+export function standardGraphics(options = {}) {
+  const parent = document.getElementById('canvas-parent');
+  let smallerDimension = Math.min(parent.parentElement.offsetWidth, parent.parentElement.offsetHeight)
+  smallerDimension -= 32;
+
+  const c = createGraphics(smallerDimension, smallerDimension, options.renderer || P2D);
+  c._accessibleOutputs = {}; // this is because of a bug.
+  if(options.renderer == WEBGL) {
+    c.translate(-width/2, -height/2);
+
+  }
+  c.parent('canvas-parent');
+  return c;
+}
+
 export const penColor = '#111111';
 export const paperColor = '#efefef';
 
