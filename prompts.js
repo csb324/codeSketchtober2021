@@ -33,7 +33,32 @@ const prompts = {
   "g4": { "name": "Genuary day 4: The Next Next Fidenza", "file":"g4", thumbnail: true},
   "g5": { "name": "Genuary day 5: Destroy a Square", "file":"g5", thumbnail: true},
   "g2": { "name": "Genuary day 2: Dithering", "file":"g2", thumbnail: true},
-  "g7": { "name": "Genuary day 7: Sol LeWitt Wall Drawing", "file":"g7", thumbnail: true}
+  "g7": { "name": "Genuary day 7: Sol LeWitt Wall Drawing", "file":"g7", thumbnail: true},
+  "g8": { "name": "Genuary day 8: Single curve only", "file":"g8", thumbnail: true},
+  "g9": { "name": "Genuary day 9: Architecture", "file":"g9"},
+  "g10": { "name": "Genuary day 10: Machine learning, wrong answers only", "file":"g10"},
+  "g11": { "name": "Genuary day 11: No computer", "file":"g11"},
+  "g12": { "name": "Genuary day 12: Packing", "file":"g12"},
+  "g13": { "name": "Genuary day 13: 80x800", "file":"g13"},
+  "g14": { "name": "Genuary day 14: Something you'd never make", "file":"g14"},
+  "g15": { "name": "Genuary day 15: Sand", "file":"g15"},
+  "g16": { "name": "Genuary day 16: Color gradients gone wrong", "file":"g16"},
+  "g17": { "name": "Genuary day 17: Three colors", "file":"g17"},
+  "g18": { "name": "Genuary day 18: VHS", "file":"g18"},
+  "g19": { "name": "Genuary day 19: Text/typography", "file":"g19"},
+  "g20": { "name": "Genuary day 20: Sea of shapes", "file":"g20"},
+  "g21": { "name": "Genuary day 21: Combine two previous pieces", "file":"g21"},
+  "g22": { "name": "Genuary day 22: Something that will look different in a year", "file":"g22"},
+  "g23": { "name": "Genuary day 23: Abstract vegetation", "file":"g23"},
+  "g24": { "name": "Genuary day 24: Pseudo-random number generator", "file":"g24"},
+  "g25": { "name": "Genuary day 25: Perspective", "file":"g25"},
+  "g26": { "name": "Genuary day 26: Airport carpet", "file":"g26"},
+  "g27": { "name": "Genuary day 27: #2E294E #541388 #F1E9DA #FFD400 #D90368", "file":"g27"},
+  "g28": { "name": "Genuary day 28: Self portrait", "file":"g28"},
+  "g29": { "name": "Genuary day 29: Isometric perspective", "file":"g29"},
+  "g30": { "name": "Genuary day 30: Organic looking, rectangles only", "file":"g30"},
+  "g31": { "name": "Genuary day 31: Negative space", "file":"g31"}
+
 };
 
 module.exports = prompts;
