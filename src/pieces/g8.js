@@ -16,7 +16,9 @@ class Squiggle {
     this.draw();
   }
 
-  addVariables() {};
+  addVariables() {
+    this.pointVariation = 10;
+  };
 
   addColors() {
     this.colors = ['#279af1', '#f71735', '#a833b9', utils.penColor];
@@ -44,7 +46,7 @@ class Squiggle {
     beginShape();
     for (let index = 0; index < this.points.length; index++) {
       const element = this.points[index];
-      this.drawPoint(element, 10);    
+      this.drawPoint(element, this.pointVariation);    
     }
     endShape();
   }
@@ -74,6 +76,9 @@ class FlowerSquiggle extends Squiggle {
   }
 
   addVariables() {
+    this.randomnessFactor = random(0, 0.05);
+    this.pointVariation = random(5, 15);
+
     const possibleCenters = [
       {x: 0.5, y:0.5},
       {x: 0.5, y:0.8},
@@ -93,17 +98,28 @@ class FlowerSquiggle extends Squiggle {
   addFlower() {
     const howManyPoints = Math.floor(random(15, 40));
 
+    let flowerPoints = [];
+
     for (let index = 0; index < howManyPoints; index++) {
       let x = random(0.9, 1.1) * (index/howManyPoints);
-      this.points.push({
+      flowerPoints.push({
         x: map(cos(x * TWO_PI), -1, 1, 0.1, 0.9), 
         y: map(sin(x * TWO_PI), -1, 1, 0.1, 0.9)
       });
 
       if(random() > 0.6) {
-        this.points.push(this.center)
+        flowerPoints.push(this.center)
       }
     }
+
+    flowerPoints.sort((a, b) => {
+      if(random() < this.randomnessFactor) {
+        return -1;
+      };
+      return 1;
+    })
+
+    this.points = this.points.concat(flowerPoints)
 
   }
 
@@ -116,10 +132,12 @@ class FlowerSquiggle extends Squiggle {
     // console.log(this.points.length);
     this.points = this.points.concat(reversed);
     // console.log(this.points.length);
-    this.addFlower();
+    if(random() > 0.5) {
+      this.addFlower();
+    } else {
+      this.points = this.points.concat(this.points);
+    }
 
-
-    // this.points = this.points.concat(this.points);
   }
   addStem() {
     this.points.push(this.center)
@@ -266,14 +284,15 @@ function reset() {
 function draw() {
   background(utils.paperColor);
   stroke(utils.penColor);
-  strokeWeight(utils.relSize(1));
+  strokeWeight(utils.relSize(2));
   noFill();
+
   translate(0, utils.relSize(-100))
   utils.zoomOut(0.4);
   new FlowerSquiggle();
   utils.zoomOut((1/0.4));
-  // strokeWeight(utils.relSize(10));
-  rect(utils.relSize(50), utils.relSize(150), utils.relSize(900), utils.relSize(900), 4)
+  strokeWeight(utils.relSize(1));
+  rect(utils.relSize(50), utils.relSize(150), utils.relSize(900), utils.relSize(900))
 }
 
 const pieceName = "Single Curve";
