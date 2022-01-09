@@ -35,7 +35,7 @@ const prompts = {
   "g2": { "name": "Genuary day 2: Dithering", "file":"g2", thumbnail: true},
   "g7": { "name": "Genuary day 7: Sol LeWitt Wall Drawing", "file":"g7", thumbnail: true},
   "g8": { "name": "Genuary day 8: Single curve only", "file":"g8", thumbnail: true},
-  "g9": { "name": "Genuary day 9: Architecture", "file":"g9"},
+  "g9": { "name": "Genuary day 9: Architecture", "file":"g9", thumbnail: true},
   "g10": { "name": "Genuary day 10: Machine learning, wrong answers only", "file":"g10"},
   "g11": { "name": "Genuary day 11: No computer", "file":"g11"},
   "g12": { "name": "Genuary day 12: Packing", "file":"g12"},
