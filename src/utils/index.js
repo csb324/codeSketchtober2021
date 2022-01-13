@@ -30,6 +30,7 @@ export function rgba(r, g, b, aPercent) {
   return color(r, g, b, aPercent * 255);
 }
 
+
 export function createGradient(color1, color2, xDirection, yDirection) {
   const g = drawingContext.createLinearGradient(0, 0, xDirection ? width*xDirection : 0, yDirection ? height*yDirection : 0);
   g.addColorStop(0, color1);

@@ -25,16 +25,6 @@ function reset() {
   computed.entranceStartY = (1000 - settings.entranceHeight - computed.yPadding);
 }
 
-function assignType(box) {
-
-}
-
-function assignTypes(boxes) {
-  return boxes.map((b) => {
-    b = assignType(b);
-  });
-}
-
 function draw() {
   background(utils.paperColor);
   noFill();
@@ -43,9 +33,6 @@ function draw() {
   const c = new Cathedral(settings, computed);
   utils.zoomOut(0.9);
   c.draw();
-  // const d = new Cathedral(settings, computed);
-  // d.draw();
-
 }
 
 const pieceName = "Architecture";
