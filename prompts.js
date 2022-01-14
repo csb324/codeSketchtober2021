@@ -40,7 +40,7 @@ const prompts = {
   "g11": { "name": "Genuary day 11: No computer", "file":"g11"},
   "g12": { "name": "Genuary day 12: Packing", "file":"g12", thumbnail: true},
   "g13": { "name": "Genuary day 13: 80x800", "file":"g13", thumbnail: true},
-  "g14": { "name": "Genuary day 14: Something you'd never make", "file":"g14"},
+  "g14": { "name": "Genuary day 14: Something you'd never make", "file":"g14", thumbnail: true, thumbnailName: "g14.gif"},
   "g15": { "name": "Genuary day 15: Sand", "file":"g15"},
   "g16": { "name": "Genuary day 16: Color gradients gone wrong", "file":"g16"},
   "g17": { "name": "Genuary day 17: Three colors", "file":"g17"},

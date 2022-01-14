@@ -78,9 +78,10 @@ export function standardKeyPressed() {
   } 
 }
 
-export function standardKeyPressedFactory(name) {
+export function standardKeyPressedFactory(name, extraKeys) {
   let isPaused = false;
   let frameStandard = 300;
+
   function standardKeyPressed() {
     if(frameStandard > 100) {
       frameStandard = floor(frameRate());
@@ -88,6 +89,18 @@ export function standardKeyPressedFactory(name) {
     if (key === "s") {		
       save(name)
     }
+
+    if(extraKeys) {      
+      for (const objectKey in extraKeys) {
+        if (Object.hasOwnProperty.call(extraKeys, objectKey)) {
+          console.log("got here");
+          if(keyCode === parseInt(objectKey)) {
+            extraKeys[objectKey]();
+          }
+        }
+      }
+    }
+
     if (key === "p") {
       frameRate(isPaused ? frameStandard : 0);
       isPaused = !isPaused;
@@ -147,6 +160,7 @@ export function attach(options = {}) {
   window.keyPressed = options.keyPressed;
   window.mouseClicked = options.mouseClicked;
   window.mouseReleased = options.mouseReleased;
+  window.mousePressed = options.mousePressed;
 } // these are the p5 events I use most so, here they are
 
 export default {
