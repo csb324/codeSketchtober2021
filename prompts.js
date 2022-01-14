@@ -39,7 +39,7 @@ const prompts = {
   "g10": { "name": "Genuary day 10: Machine learning, wrong answers only", "file":"g10"},
   "g11": { "name": "Genuary day 11: No computer", "file":"g11"},
   "g12": { "name": "Genuary day 12: Packing", "file":"g12", thumbnail: true},
-  "g13": { "name": "Genuary day 13: 80x800", "file":"g13"},
+  "g13": { "name": "Genuary day 13: 80x800", "file":"g13", thumbnail: true},
   "g14": { "name": "Genuary day 14: Something you'd never make", "file":"g14"},
   "g15": { "name": "Genuary day 15: Sand", "file":"g15"},
   "g16": { "name": "Genuary day 16: Color gradients gone wrong", "file":"g16"},

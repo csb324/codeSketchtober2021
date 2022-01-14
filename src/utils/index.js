@@ -61,6 +61,7 @@ export function debugShape(pointsArray) {
   }
 }
 
+let frameStandard = 30;
 // these are just defaults I use -- you can kill this if you don't want it
 export function standardKeyPressed() {
   if(frameStandard > 100) {
