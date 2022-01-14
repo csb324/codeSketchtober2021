@@ -11,7 +11,8 @@
     "build": "webpack --watch --mode=development",
     "start": "concurrently \"npm run server\" \"npm run build\"",
     "build:prod": "npm run webpack:prod && node build.js",
-    "webpack:prod": "webpack --config=webpack.prod.js --mode=development"
+    "webpack:prod": "webpack --config=webpack.prod.js --mode=development",
+    "init": "node init.js"
   },
   "author": "csb324",
   "license": "ISC",

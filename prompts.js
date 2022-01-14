@@ -58,7 +58,6 @@ const prompts = {
   "g29": { "name": "Genuary day 29: Isometric perspective", "file":"g29"},
   "g30": { "name": "Genuary day 30: Organic looking, rectangles only", "file":"g30"},
   "g31": { "name": "Genuary day 31: Negative space", "file":"g31"}
-
 };
 
 module.exports = prompts;
