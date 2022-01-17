@@ -1,7 +1,7 @@
 import utils from './index';
 
-export default function pack(subsegments, minDimension, square = false) {
-  if(square) {
+export default function pack(subsegments, minDimension, options = {}) {
+  if(options.square) {
     return squarePack(subsegments, minDimension);
   }
 
@@ -10,7 +10,11 @@ export default function pack(subsegments, minDimension, square = false) {
   while(oldSubsegments.length !== subsegments.length) {
     oldSubsegments = subsegments;
     subsegments = rectanglePack(subsegments, i, minDimension);
-    i++;
+    if(options.smallestPossible) {
+      i+= 0.3;
+    } else {
+      i++
+    }
   }
   return subsegments;
 }
