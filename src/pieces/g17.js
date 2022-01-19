@@ -98,7 +98,7 @@ class CitySquare {
     if(random() < 0.02) {
       this.polarityIntensity = random(2, 4);
     }
-    
+
     if(this.polarityIntensity > 1) {
       this.whichAlley = false;
     } 
@@ -333,6 +333,10 @@ class CityTriangles extends CitySquare {
       beginShape();
       cs.forEach((c) => this.drawCorner(c));
       endShape(CLOSE);
+
+      if(random() > 0.33) {
+        fill(colors[0]);
+      }
     })
   }
 
