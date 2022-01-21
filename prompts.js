@@ -46,7 +46,7 @@ const prompts = {
   "g17": { "name": "Genuary day 17: Three colors", "file":"g17", thumbnail: true},
   "g18": { "name": "Genuary day 18: VHS", "file":"g18", thumbnail: true, thumbnailName: 'g18.gif'},
   "g19": { "name": "Genuary day 19: Text/typography", "file":"g19", thumbnail: true},
-  "g20": { "name": "Genuary day 20: Sea of shapes", "file":"g20"},
+  "g20": { "name": "Genuary day 20: Sea of shapes", "file":"g20", thumbnail: true},
   "g21": { "name": "Genuary day 21: Combine two previous pieces", "file":"g21"},
   "g22": { "name": "Genuary day 22: Something that will look different in a year", "file":"g22"},
   "g23": { "name": "Genuary day 23: Abstract vegetation", "file":"g23"},
