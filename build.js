@@ -6,15 +6,6 @@ var copyfiles = require('copyfiles');
 
 const piecesWithFilenames = require('./prompts.js');
 
-// const piecesWithFilenames = {};
-// prompts.forEach((p, i) => {
-//   const key = `day${i+1}`;
-//   piecesWithFilenames[key] = {
-//     name: p,
-//     file: key
-//   };
-// });
-
 
 function build() {
   handlebars.registerHelper(layouts(handlebars));

@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
+// const dotenv = require('dotenv').config();
 
 function fetchPathsFromSomeExternalSource() {
   const files = fs.readdirSync(`${__dirname}/src/pieces`);
@@ -21,4 +23,11 @@ module.exports = {
     path: path.join(__dirname, "build"),
     filename: "[name].js" // string (default)
   },
+  plugins: [
+    new webpack.DefinePlugin( {
+      "process.env.KEYS": JSON.stringify({
+        WORDNIK_API_KEY: process.env.WORDNIK_API_KEY
+      })
+    } ),
+  ],
 };

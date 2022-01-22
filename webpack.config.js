@@ -1,4 +1,6 @@
 const fs = require('fs');
+const webpack = require('webpack');
+const dotenv = require('dotenv').config();
 
 function fetchPathsFromSomeExternalSource() {
   const files = fs.readdirSync(`${__dirname}/src/pieces`);
@@ -13,6 +15,7 @@ function fetchPathsFromSomeExternalSource() {
   return entries;
 }
 
+
 module.exports = {
   entry() {
     return fetchPathsFromSomeExternalSource(); // returns a promise that will be resolved with something like ['src/main-layout.js', 'src/admin-layout.js']
@@ -20,4 +23,9 @@ module.exports = {
   output: {
     filename: "[name].js", // string (default)
   },
+  plugins: [
+    new webpack.DefinePlugin( {
+      "process.env.KEYS": JSON.stringify(dotenv.parsed)
+    } ),
+  ],
 };
