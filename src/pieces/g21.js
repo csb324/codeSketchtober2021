@@ -32,7 +32,6 @@ function drawPentagon(x, y) {
   drawPolygon(x, y, 5);
 }
 
-
 function drawPolygon(x, y, n) {
   push();
   let xp = (x + 0.5) * settings.cellSize;

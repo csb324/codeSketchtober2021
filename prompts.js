@@ -50,7 +50,7 @@ const prompts = {
   "g21": { "name": "Genuary day 21: Combine two previous pieces", "file":"g21", thumbnail: true},
   "g22": { "name": "Genuary day 22: Something that will look different in a year", "file":"g22", thumbnail: true},
   "g23": { "name": "Genuary day 23: Abstract vegetation", "file":"g23", thumbnail: true},
-  "g24": { "name": "Genuary day 24: Pseudo-random number generator", "file":"g24"},
+  "g24": { "name": "Genuary day 24: Pseudo-random number generator", "file":"g24", thumbnail: true},
   "g25": { "name": "Genuary day 25: Perspective", "file":"g25"},
   "g26": { "name": "Genuary day 26: Airport carpet", "file":"g26"},
   "g27": { "name": "Genuary day 27: #2E294E #541388 #F1E9DA #FFD400 #D90368", "file":"g27"},
