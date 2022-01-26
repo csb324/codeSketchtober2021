@@ -52,7 +52,7 @@ const prompts = {
   "g23": { "name": "Genuary day 23: Abstract vegetation", "file":"g23", thumbnail: true},
   "g24": { "name": "Genuary day 24: Pseudo-random number generator", "file":"g24", thumbnail: true},
   "g25": { "name": "Genuary day 25: Perspective", "file":"g25"},
-  "g26": { "name": "Genuary day 26: Airport carpet", "file":"g26"},
+  "g26": { "name": "Genuary day 26: Airport carpet", "file":"g26", thumbnail: true},
   "g27": { "name": "Genuary day 27: #2E294E #541388 #F1E9DA #FFD400 #D90368", "file":"g27"},
   "g28": { "name": "Genuary day 28: Self portrait", "file":"g28"},
   "g29": { "name": "Genuary day 29: Isometric perspective", "file":"g29"},
