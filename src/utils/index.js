@@ -122,6 +122,11 @@ export function standardMouseReleasedFactory(resetFunction){
     if(event.target.className == "p5Canvas") {
       if (millis() - lapse > 200){
         noiseSeed(random(1000));
+        // const r = random(100);
+        // let r = 12.644834723323584;
+        // let r = 66.0762814572081;
+        // console.log(r);
+        // randomSeed(r)
         resetFunction();
         redraw();
       }

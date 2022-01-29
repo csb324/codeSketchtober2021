@@ -55,7 +55,7 @@ const prompts = {
   "g26": { "name": "Genuary day 26: Airport carpet", "file":"g26", thumbnail: true},
   "g27": { "name": "Genuary day 27: #2E294E #541388 #F1E9DA #FFD400 #D90368", "file":"g27", thumbnail: true},
   "g28": { "name": "Genuary day 28: Self portrait", "file":"g28"},
-  "g29": { "name": "Genuary day 29: Isometric perspective", "file":"g29"},
+  "g29": { "name": "Genuary day 29: Isometric perspective", "file":"g29", thumbnail: true},
   "g30": { "name": "Genuary day 30: Organic looking, rectangles only", "file":"g30"},
   "g31": { "name": "Genuary day 31: Negative space", "file":"g31"}
 };

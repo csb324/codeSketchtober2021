@@ -5,16 +5,18 @@ export default function pack(subsegments, minDimension, options = {}) {
     return squarePack(subsegments, minDimension);
   }
 
+  let incrementBy = options.incrementBy || 1;
+  if(options.smallestPossible) {
+    incrementBy = 0.3;
+  }
   let oldSubsegments = [];
   let i = 0;
   while(oldSubsegments.length !== subsegments.length) {
     oldSubsegments = subsegments;
     subsegments = rectanglePack(subsegments, i, minDimension);
-    if(options.smallestPossible) {
-      i+= 0.3;
-    } else {
-      i++
-    }
+   
+    i+= incrementBy;
+   
   }
   return subsegments;
 }
