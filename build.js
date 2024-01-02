@@ -6,7 +6,6 @@ var copyfiles = require('copyfiles');
 
 const piecesWithFilenames = require('./prompts.js');
 
-
 function build() {
   handlebars.registerHelper(layouts(handlebars));
   var layoutFile = fs.readFileSync(
@@ -27,8 +26,13 @@ function buildIndex() {
   );
   template = wrapTemplate(template);
   var renderTemplate = handlebars.compile(template);
+  var pieces = Object.values(piecesWithFilenames).sort((a, b) => a.file - b.file );
+
+  pieces.reverse();
+  console.log(pieces);
+
   var html = renderTemplate({
-    pieces: Object.values(piecesWithFilenames)
+    pieces: pieces
   });
 
   fs.writeFile("./build/index.html", html, err => {
@@ -66,9 +70,17 @@ function buildPieces(pieces) {
       scriptName: p.file + ".js"
     });
 
+    if(p.file.search('/') > 0) {
+      var dir = p.file.split('/')[0]
+      if(!fs.existsSync('./build/' + dir)) { fs.mkdirSync('./build/' + dir)}
+    }
+    
     fs.writeFile("./build/" + p.file + ".html", html, err => {
-      if (err) console.log(err);
-      console.log("File " + p.file + " written succesfully");
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("File " + p.file + " written succesfully");
+      }
     });
   })
 }

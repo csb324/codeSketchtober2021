@@ -60,7 +60,7 @@ const prompts = {
   "g31": { "name": "Genuary 2021 day 31: Negative space", "file":"2021/g31", thumbnail: true},
   "arabesque": { "name": "#WCCChallenge: Arabesque", "file": "arabesque"},
   "instrument": { "name": "#WCCChallenge: Instrument", "file": "instrument", thumbnail: true},
-  "g1": { "name": "Genuary 2021 day 31: Negative space", "file":"g1", thumbnail: true}
+  "g1": { "name": "Genuary day 1: Particles", "file":"g1", thumbnail: true}
 };
 
 module.exports = prompts;

@@ -18,9 +18,7 @@ function setup() {
 function reset() {
 }
 
-
 function draw() {
-
   background(utils.paperColor);
   stroke(utils.penColor);
   strokeWeight(utils.relSize(4));
@@ -28,6 +26,7 @@ function draw() {
 
   translate(0, utils.relSize(-100))
   utils.zoomOut(0.4);
+
   const f = new FlowerSquiggle();
 
   utils.zoomOut((1/0.4));

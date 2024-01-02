@@ -7,11 +7,13 @@ function fetchPathsFromSomeExternalSource() {
 
   let entries = {};
   files.forEach((f) => {
-     entries[f] = { 
-       import: `./src/pieces/${f}`,
-       filename: `/pieces/${f}`
-     }
-  })  
+    if(f.split(".").length == 2) {
+      entries[f] = { 
+        import: `./src/pieces/${f}`,
+        filename: `/pieces/${f}`
+      }  
+    }
+  })
   return entries;
 }
 
