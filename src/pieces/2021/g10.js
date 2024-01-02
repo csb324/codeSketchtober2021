@@ -1,7 +1,7 @@
 import p5 from 'p5';
 import ml5 from 'ml5';
-import * as utils from '../utils';
-import pack from '../utils/rectanglePack';
+import * as utils from '../../utils';
+import pack from '../../utils/rectanglePack';
 
 // const demo = [
   //{"word":"warm,"

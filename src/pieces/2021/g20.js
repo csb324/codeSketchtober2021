@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import * as utils from '../utils';
+import * as utils from '../../utils';
 
 const pieceName = "Genuary day 20: Sea of shapes";
 

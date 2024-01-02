@@ -1,7 +1,7 @@
 import p5 from 'p5';
-import rectanglePack from '../utils/rectanglePack';
-import * as utils from '../utils';
-import { Clothing, ButtonDown, Dress, Pants, Shoes, TShirt, Underpants, Shorts, Necklace } from '../utils/Clothing';
+import rectanglePack from '../../utils/rectanglePack';
+import * as utils from '../../utils';
+import { Clothing, ButtonDown, Dress, Pants, Shoes, TShirt, Underpants, Shorts, Necklace } from '../../utils/Clothing';
 
 function setup() {  
   utils.standardCanvas();

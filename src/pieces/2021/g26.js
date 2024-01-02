@@ -1,7 +1,7 @@
 
 import p5 from 'p5';
-import * as utils from '../utils';
-import threadColors from '../utils/threadColors';
+import * as utils from '../../utils';
+import threadColors from '../../utils/threadColors';
 
 const pieceName = "Genuary day 26: Airport carpet";
 

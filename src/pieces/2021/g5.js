@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import * as utils from '../utils';
+import * as utils from '../../utils';
 
 let r;
 

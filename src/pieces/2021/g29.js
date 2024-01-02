@@ -1,7 +1,7 @@
 import p5 from 'p5';
-import * as utils from '../utils';
-import threadColors from '../utils/threadColors';
-import pack from '../utils/rectanglePack';
+import * as utils from '../../utils';
+import threadColors from '../../utils/threadColors';
+import pack from '../../utils/rectanglePack';
 
 const pieceName = "Genuary day 29: Isometric perspective";
 

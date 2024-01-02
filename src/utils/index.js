@@ -3,6 +3,8 @@ export function standardCanvas(options = {}) {
   let smallerDimension = Math.min(parent.parentElement.offsetWidth, parent.parentElement.offsetHeight)
   smallerDimension -= 32;
 
+  smallerDimension = 4000;
+
   const c = createCanvas(smallerDimension, smallerDimension, options.renderer || P2D);
   c.parent('canvas-parent');
   return c;
@@ -24,7 +26,7 @@ export function standardGraphics(options = {}) {
 }
 
 export const penColor = '#111111';
-export const paperColor = '#efefef';
+export const paperColor = '#ffffff';
 
 export function rgba(r, g, b, aPercent) {
   return color(r, g, b, aPercent * 255);

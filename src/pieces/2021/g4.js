@@ -1,5 +1,5 @@
 import p5, { Color } from 'p5';
-import * as utils from '../utils';
+import * as utils from '../../utils';
 
 const increment = 10;
 let settings = {

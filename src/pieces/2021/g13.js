@@ -1,6 +1,6 @@
 import p5 from 'p5';
-import * as utils from '../utils';
-import wiggleLine from '../utils/wiggleLine';
+import * as utils from '../../utils';
+import wiggleLine from '../../utils/wiggleLine';
 
 let colors = [];
 

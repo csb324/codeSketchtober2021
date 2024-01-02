@@ -1,8 +1,8 @@
 
 import p5 from 'p5';
-import * as utils from '../utils';
-import threadColors from '../utils/threadColors';
-import wiggleLine from '../utils/wiggleLine';
+import * as utils from '../../utils';
+import threadColors from '../../utils/threadColors';
+import wiggleLine from '../../utils/wiggleLine';
 
 const pieceName = "Genuary day 31: Negative space";
 

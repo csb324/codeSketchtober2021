@@ -1,7 +1,7 @@
 
 import p5 from 'p5';
-import * as utils from '../utils';
-import rectanglePack from '../utils/rectanglePack';
+import * as utils from '../../utils';
+import rectanglePack from '../../utils/rectanglePack';
 
 const pieceName = "Genuary day 17: Three colors";
 

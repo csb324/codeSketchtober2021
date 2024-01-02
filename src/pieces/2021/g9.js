@@ -1,7 +1,7 @@
 import p5 from 'p5';
-import * as utils from '../utils';
+import * as utils from '../../utils';
 // import rectanglePack from '../utils/rectanglePack';
-import Cathedral from '../utils/Cathedral';
+import Cathedral from '../../utils/Cathedral';
 
 function setup() {  
   utils.standardCanvas();

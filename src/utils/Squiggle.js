@@ -2,6 +2,11 @@ import * as utils from './index';
 
 export class Squiggle {
   constructor(options) {
+    this.seed = random(millis());
+    randomSeed(this.seed);
+    noiseSeed(this.seed)
+  
+
     this.points = [];
     this.readOptions(options);
     this.addColors();
@@ -103,6 +108,7 @@ export class FlowerSquiggle extends Squiggle {
 
   addFlower() {
     const howManyPoints = Math.floor(random(15, 40));
+    this.howManyPoints = howManyPoints;
 
     let flowerPoints = [];
 
@@ -170,18 +176,23 @@ export class FlowerSquiggle extends Squiggle {
   draw() {
     this.drawSquiggle();
 
-    // let total = 20;
-    // push();
-    // while (total > 0.5) {
-      for (let index = 0; index < 4; index++) {
-      }
-      // let w = random(max((total)/2, 1), total);
-      // total = total - w;
-      // strokeWeight(utils.relSize(w))
-      // stroke(random(this.colors));
-    // }
-    // pop();
-  }  
+  }
+
+  describe(xPosition, yPosition) {
+
+    const textSizeV = utils.relSize(15);
+    // textAlign('right');
+    fill(utils.penColor);
+    textSize(textSizeV);
+    let yPointer = yPosition;
+    text(`seed: ${this.seed}`, xPosition, yPointer);
+    yPointer -= textSizeV;
+    text(`points: ${this.howManyPoints}`, xPosition, yPointer);
+    yPointer -= textSizeV;
+    text(`center: ${this.center.x}, ${this.center.y}`, xPosition, yPointer);
+    yPointer -= textSizeV;
+    text(`pointVariation: ${this.pointVariation}`, xPosition, yPointer)
+  }
 
 }
 

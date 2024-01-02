@@ -1,5 +1,5 @@
 import p5 from 'p5';
-import * as utils from '../utils';
+import * as utils from '../../utils';
 
 const pieceName = "Genuary day 22: Something that will look different in a year";
 const WORDNIK_API_KEY = process.env.KEYS["WORDNIK_API_KEY"];

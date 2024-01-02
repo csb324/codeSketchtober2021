@@ -1,7 +1,7 @@
 
 import p5 from 'p5';
-import * as utils from '../utils';
-import { FlowerSquiggle } from '../utils/Squiggle';
+import * as utils from '../../utils';
+import { FlowerSquiggle } from '../../utils/Squiggle';
 
 const pieceName = "Genuary day 21: Combine two previous pieces";
 

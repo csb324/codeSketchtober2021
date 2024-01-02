@@ -1,6 +1,6 @@
 import p5 from 'p5';
-import * as utils from '../utils';
-import { drawHex, drawTriangle } from '../utils/polygons';
+import * as utils from '../../utils';
+import { drawHex, drawTriangle } from '../../utils/polygons';
 
 const pieceName = "Pseudo-random number generator";
 

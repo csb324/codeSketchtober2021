@@ -1,7 +1,7 @@
 
 import p5 from 'p5';
-import * as utils from '../utils';
-import RectangleTree from '../utils/RectangleTree';
+import * as utils from '../../utils';
+import RectangleTree from '../../utils/RectangleTree';
 
 const pieceName = "Genuary day 30: Organic looking, rectangles only";
 // let allColors = [
