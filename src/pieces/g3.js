@@ -6,22 +6,19 @@ const pieceName = "Genuary day 3: Droste";
 
 const CHILD_THRESHOLD = 0.5;
 const SPEED = 0.005;
-const CHILD_TO_PARENT = 8;
+const CHILD_TO_PARENT = 18;
+const OFFSCREEN_BOUNDARY = -100;
 
 let h;
 let bgColor = utils.paperColor;
-
 let palette = ["#8cbcb9","#ff0000","#f194b4","#ffb100","#ffebc6"]
 
 class DrosteHouse {
 
   constructor(x, y, width = 0, height = 0) {
+    this.x = x;
+    this.y = y;
 
-    console.log("created with: ", x, y);
-    this.xStart = x;
-    this.yStart = y;
-    this.x = this.xStart;
-    this.y = this.yStart;
     this.setStartDimensions(width, height);
     
     this.progress = 0;
@@ -53,9 +50,11 @@ class DrosteHouse {
 
   update() {
     this.progress += SPEED;
-
     this.setDimensions();
     this.createChild();
+    if(this.child) {
+      this.child.updateTo(this.width, this.height);
+    }
   }
 
   updateTo(w, h) {
@@ -71,8 +70,8 @@ class DrosteHouse {
       this.child = new DrosteHouse(
         random(this.width) + this.x, 
         random(this.height) + this.y, 
-        random(this.width/CHILD_TO_PARENT), 
-        random(this.height/CHILD_TO_PARENT)
+        map(random(), 0, 1, this.width/CHILD_TO_PARENT, this.width/(CHILD_TO_PARENT-1)), 
+        map(random(), 0, 1, this.height/CHILD_TO_PARENT, this.height/(CHILD_TO_PARENT-1)), 
       );
 
       this.child.setRatio(this.width, this.height);
@@ -86,9 +85,7 @@ class DrosteHouse {
   handOff() {
     if(this.coversWholeScreen()) {
       bgColor = this.color;
-
       this.child.setStartDimensions(this.child.width, this.child.height);
-
       return this.child;
     } else {
       return false;
@@ -99,11 +96,15 @@ class DrosteHouse {
     this.height = map(this.progress, 0, 1, this.heightStart, this.ultimateHeight);
     this.width = map(this.progress, 0, 1, this.widthStart, this.ultimateWidth);
 
-    // this.x = this.xStart - (this.width/2);
-    // this.y = this.yStart - this.height/2;
-
     this.x = map(this.progress, 0, 1, this.xStart, this.ultimateLeft);
     this.y = map(this.progress, 0, 1, this.yStart, this.ultimateTop);
+
+    if(this.x < OFFSCREEN_BOUNDARY) {
+      this.x = OFFSCREEN_BOUNDARY
+    }
+    if(this.y < OFFSCREEN_BOUNDARY) {
+      this.y = OFFSCREEN_BOUNDARY;
+    }
   }
 
   draw() {
@@ -117,7 +118,6 @@ class DrosteHouse {
     );
 
     if(this.child) {
-      this.child.updateTo(this.width, this.height);
       this.child.draw();
     }
   }
