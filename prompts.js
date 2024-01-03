@@ -59,8 +59,9 @@ const prompts = {
   "g30": { "name": "Genuary 2021 day 30: Organic looking, rectangles only", "file":"2021/g30", thumbnail: true},
   "g31": { "name": "Genuary 2021 day 31: Negative space", "file":"2021/g31", thumbnail: true},
   "arabesque": { "name": "#WCCChallenge: Arabesque", "file": "arabesque"},
-  "instrument": { "name": "#WCCChallenge: Instrument", "file": "instrument", thumbnail: true},
-  "g1": { "name": "Genuary day 1: Particles", "file":"g1", thumbnail: true}
+  "instrument": { "name": "#WCCChallenge: Instrument", "file": "instrument", thumbnail: false},
+  "g1": { "name": "Genuary day 1: Particles", "file":"g1", thumbnail: true},
+  "g3": { "name": "Genuary day 3: Droste", "file":"g3"}
 };
 
 module.exports = prompts;
