@@ -1,135 +1,151 @@
-
 import p5 from 'p5';
 import * as utils from '../utils';
+import rectanglePack from '../utils/rectanglePack';
+import wiggleLine from '../utils/wiggleLine';
 
 const pieceName = "Genuary day 3: Droste";
 
-const CHILD_THRESHOLD = 0.5;
-const SPEED = 0.005;
-const CHILD_TO_PARENT = 18;
-const OFFSCREEN_BOUNDARY = -100;
 
 let h;
-let bgColor = utils.paperColor;
-let palette = ["#8cbcb9","#ff0000","#f194b4","#ffb100","#ffebc6"]
+let bgColor;
+let palette;
+
+const SPEED = 0.008;
 
 class DrosteHouse {
-
-  constructor(x, y, width = 0, height = 0) {
-    this.x = x;
-    this.y = y;
-
-    this.setStartDimensions(width, height);
-    
+  constructor() {
+    this.seed = random(frameCount);
     this.progress = 0;
-    this.color = random(palette);
+    this.roomAreas = rectanglePack([{x: 0, y:0, w:1000, h:1000}], 200);
+    
+    this.nextRoomArea = random(this.roomAreas);
+    this.nextRoom = false;
 
-    this.ultimateHeight = random(750, 900);
-    this.ultimateWidth = random(500, 750);
-
-    this.ultimateBottom = 950;
-    this.ultimateTop = this.ultimateBottom - this.ultimateHeight;
-    this.ultimateLeft = (1000 - this.ultimateWidth) / 2;
-    this.ultimateRight = 1000 - this.ultimateLeft;
-
-    this.child = false;
+    this.xMultiplier = 1;
+    this.yMultiplier = 1;
   }
 
-  setStartDimensions(width, height) {
-    this.widthStart = width;
-    this.heightStart = height;
-
-    this.xStart = this.x;
-    this.yStart = this.y;
-  }
-
-  setRatio(parentWidth, parentHeight) {
-    this.xRatio = this.widthStart / parentWidth;
-    this.yRatio = this.heightStart / parentHeight;
-  }
+  setMultipliers(x, y) {
+    this.xMultiplier = x;
+    this.yMultiplier = y;
+  } 
 
   update() {
     this.progress += SPEED;
-    this.setDimensions();
-    this.createChild();
-    if(this.child) {
-      this.child.updateTo(this.width, this.height);
+
+    if(this.progress > 0.5 && !this.nextRoom) {
+      // let cx = this.nextRoomArea.x + this.nextRoomArea.w/2;
+      // let cy = this.nextRoomArea.y + this.nextRoomArea.h/2;
+      
+      this.nextRoom = new DrosteHouse();
+      this.nextRoom.setMultipliers(this.nextRoomArea.w/1000, this.nextRoomArea.h/1000);
+    }
+
+    if(this.nextRoom) {
+      this.nextRoom.update();
+    }
+
+    if(this.progress > 3) {
+      h = this.nextRoom;
     }
   }
 
-  updateTo(w, h) {
-    this.width = this.xRatio * w;
-    this.height = this.yRatio * h;
+  draw() { 
+    randomSeed(this.seed);
 
-    this.x = this.xStart - (this.width/2);
-    this.y = this.yStart - this.height/2;
-  }
+    push();
 
-  createChild() {    
-    if(!this.child && this.progress > CHILD_THRESHOLD) {
-      this.child = new DrosteHouse(
-        random(this.width) + this.x, 
-        random(this.height) + this.y, 
-        map(random(), 0, 1, this.width/CHILD_TO_PARENT, this.width/(CHILD_TO_PARENT-1)), 
-        map(random(), 0, 1, this.height/CHILD_TO_PARENT, this.height/(CHILD_TO_PARENT-1)), 
+    if(this.progress < 1) {
+      scale(
+        map(this.progress, 0, 1, 0, this.xMultiplier),
+        map(this.progress, 0, 1, 0, this.yMultiplier)
       );
 
-      this.child.setRatio(this.width, this.height);
-    }
-  }
-
-  coversWholeScreen() {
-    return (this.y + this.height > 1000 && this.x + this.width > 1000 && this.x < 0 && this.y < 0)
-  }
-
-  handOff() {
-    if(this.coversWholeScreen()) {
-      bgColor = this.color;
-      this.child.setStartDimensions(this.child.width, this.child.height);
-      return this.child;
+      this.roomAreas.forEach((b) => {
+        this.drawArea({
+          x: b.x,
+          y: b.y,
+          w: b.w,
+          h: b.h
+        });
+      });
+  
     } else {
-      return false;
+      scale(
+        map(this.progress, 1, 2, this.xMultiplier, 1),
+        map(this.progress, 1, 2, this.yMultiplier, 1)
+      )
+
+      this.roomAreas.forEach((b) => {
+        this.drawArea({
+          x: map(this.progress, 1, 2, b.x, 0),
+          y: map(this.progress, 1, 2, b.y, 0),
+          w: b.w,
+          h: b.h
+        });
+      });
+
     }
+
+
+    // let mx = this.xMultiplier || this.progress;
+    let mx = 1;
+    let my = 1;
+
+    console.log(this.nextRoomArea)
+    // let my = this.yMultiplier || this.progress;
+    
+
+    if(this.nextRoom) {
+      translate(utils.relSize(this.nextRoomArea.x), utils.relSize(this.nextRoomArea.y));  
+
+      this.nextRoom.draw();
+    }
+    pop();
+
   }
 
-  setDimensions() {
-    this.height = map(this.progress, 0, 1, this.heightStart, this.ultimateHeight);
-    this.width = map(this.progress, 0, 1, this.widthStart, this.ultimateWidth);
-
-    this.x = map(this.progress, 0, 1, this.xStart, this.ultimateLeft);
-    this.y = map(this.progress, 0, 1, this.yStart, this.ultimateTop);
-
-    if(this.x < OFFSCREEN_BOUNDARY) {
-      this.x = OFFSCREEN_BOUNDARY
+  drawArea({x, y, w, h}) {
+    let areaColor = random(["#f194b4","#ffb100","#ffebc6"]);
+    if(x == this.nextRoomArea.x && y == this.nextRoomArea.y) {
+      areaColor = '#ff0000'
     }
-    if(this.y < OFFSCREEN_BOUNDARY) {
-      this.y = OFFSCREEN_BOUNDARY;
-    }
+    stroke(bgColor);
+    fill(areaColor);
+
+    push();
+
+    translate(utils.relSize(x), utils.relSize(y));
+    rect(0, 0, utils.relSize(w), utils.relSize(h));
+    noFill();
+    this.wiggleBox(0, 0, utils.relSize(w), utils.relSize(h));    
+    pop();
   }
 
-  draw() {
-    fill(this.color);
+  wiggleBox(x1, y1, x2, y2) {
+    wiggleLine(x1, y1, x1, y2);
+    wiggleLine(x1, y1, x1, y2);
 
-    rect(
-      utils.relSize(this.x),
-      utils.relSize(this.y),
-      utils.relSize(this.width),
-      utils.relSize(this.height)
-    );
+    wiggleLine(x2, y1, x2, y2);
+    wiggleLine(x2, y1, x2, y2);
 
-    if(this.child) {
-      this.child.draw();
-    }
+    wiggleLine(x1, y1, x2, y1);
+    wiggleLine(x1, y1, x2, y1);
+
+    wiggleLine(x1, y2, x2, y2);
+    wiggleLine(x1, y2, x2, y2);
   }
+
 }
 
 function setup() {  
   utils.standardCanvas();
-  h = new DrosteHouse(500, 500);
   reset();
 }
 
 function reset() {
+  palette = ["#8cbcb9","#ff0000","#f194b4","#ffb100","#ffebc6"]
+  bgColor = utils.paperColor;
   h = new DrosteHouse(500, 500);
 }
 
@@ -140,8 +156,7 @@ function draw() {
   h.update();
   h.draw();
 
-  h = h.handOff() || h;
-
+  // h = h.handOff() || h;
 }
 
 

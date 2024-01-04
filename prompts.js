@@ -61,7 +61,8 @@ const prompts = {
   "arabesque": { "name": "#WCCChallenge: Arabesque", "file": "arabesque"},
   "instrument": { "name": "#WCCChallenge: Instrument", "file": "instrument", thumbnail: false},
   "g1": { "name": "Genuary day 1: Particles", "file":"g1", thumbnail: true},
-  "g3": { "name": "Genuary day 3: Droste", "file":"g3"}
+  "g3": { "name": "Genuary day 3: Droste", "file":"g3"},
+  "g4": { "name": "Genuary day 4: Pixel", "file": "g4", thumbnail: true} 
 };
 
 module.exports = prompts;
