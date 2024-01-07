@@ -4,21 +4,21 @@ import * as utils from '../utils';
 import wiggleLine from '../utils/wiggleLine';
 
 const pieceName = "Genuary day 5: Vera Molnar";
+const padding = 20;
 
 class PlottedScribble {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-
     this.straight = (random() > 0.8);
-
-    const padding = 20;
 
     this.squareSize = utils.relSize(gridDistance - padding);
     this.xStart = utils.relSize(gridDistance) * (this.x) + utils.relSize(padding / 2);
     this.yStart = utils.relSize(gridDistance) * (this.y) + utils.relSize(padding / 2);
 
     this.segments = floor(random(4, 10));
+
+    this.currentStrokeWeight = 1;
   }
 
   draw() {
@@ -37,23 +37,85 @@ class PlottedScribble {
       translate(-this.xStart - (this.squareSize/2), -this.yStart - (this.squareSize/2));
     }
 
-    wiggleLine(this.xStart, this.yStart, this.xStart + this.squareSize, this.yStart, false, 5);
-    wiggleLine(this.xStart, this.yStart + this.squareSize, this.xStart + this.squareSize, this.yStart  + this.squareSize, false, 5);
-    wiggleLine(this.xStart, this.yStart, this.xStart, this.yStart + this.squareSize, false, 5);
-    wiggleLine(this.xStart + this.squareSize, this.yStart, this.xStart + this.squareSize, this.yStart + this.squareSize, false, 5);
-
-
-    if(this.straight) {
-      this.drawLines();
-    } else {
-      this.drawWiggles();
-    }
-
+    this.drawBox();
+    this.drawInterior();
     pop();
 
   }
+
+  drawBox() {
+    const boxSmoothness = 6;
+
+    push();
+
+    translate(this.xStart, this.yStart);
+
+    wiggleLine(0, 0, this.squareSize, 0, false, boxSmoothness);
+    wiggleLine(0, this.squareSize, this.squareSize, this.squareSize, false, boxSmoothness);
+    wiggleLine(0, 0, 0, this.squareSize, false, boxSmoothness);
+    wiggleLine(this.squareSize, 0, this.squareSize, this.squareSize, false, boxSmoothness);
+
+    pop();
+  }
+
+  drawNothing() {
+    return;
+  }
+
+  drawTarget() {
+    const iterations = random(3, 10);
+    for (let index = 0; index < iterations; index++) {
+
+      const offsetX = this.xStart + (this.squareSize/2) + randomGaussian(0, utils.relSize(0));
+      const offsetY = this.yStart + (this.squareSize/2) + randomGaussian(0, utils.relSize(0));
+
+      const scaleFactor = random(0.65, 0.9)
+
+      translate(offsetX, offsetY);
+      scale(scaleFactor)
+      this.currentStrokeWeight = (this.currentStrokeWeight / scaleFactor);
+      translate(-offsetX, -offsetY);
+      strokeWeight(this.currentStrokeWeight)
+
+      this.drawBox();
+    }
+    return;
+  }
+
+  drawMoreSquares() {
+
+    const iterations = random(3, 10);
+    for (let index = 0; index < iterations; index++) {
+
+      const offsetX = this.xStart + (this.squareSize/2) + randomGaussian(0, utils.relSize(20));
+      const offsetY = this.yStart + (this.squareSize/2) + randomGaussian(0, utils.relSize(20));
+
+      translate(offsetX, offsetY);
+      rotate(randomGaussian(0, (PI/24)));
+      translate(-offsetX, -offsetY);
+
+      this.drawBox();
+    }
+    return;
+  }
+
+  drawInterior() {
+
+    const interiors = [
+      this.drawHorizontalLines.bind(this),
+      this.drawVerticalLines.bind(this),
+      this.drawWiggles.bind(this),
+      this.drawWiggles.bind(this),
+      this.drawMoreSquares.bind(this),
+      this.drawMoreSquares.bind(this),
+      this.drawTarget.bind(this),
+    ];
+    const thisTime = random(interiors);
+
+    thisTime();
+  }
   
-  drawLines() {
+  drawHorizontalLines() {
 
     for (let i = 0; i < this.segments; i++) {
       wiggleLine(
@@ -65,6 +127,19 @@ class PlottedScribble {
     }
   }
 
+
+  drawVerticalLines() {
+
+    for (let i = 0; i < this.segments; i++) {
+      wiggleLine(
+        this.xStart + (this.squareSize * (i+0.5) / this.segments), 
+        this.yStart, 
+        this.xStart + (this.squareSize * (i+0.5) / this.segments),
+        this.yStart + this.squareSize,
+        false,
+        wiggleFactor)
+    }
+  }
 
   drawWiggles() {
 
